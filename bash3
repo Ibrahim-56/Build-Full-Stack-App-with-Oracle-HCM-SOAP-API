@@ -1,3 +1,14 @@
 # Create .env files
 cp .env.example .env
 # Fill in your Oracle HCM credentials
+# Development
+cd backend
+npm run dev
+
+# In another terminal
+cd frontend
+npm start
+
+# Production with Docker
+chmod +x deploy.sh
+./deploy.sh
