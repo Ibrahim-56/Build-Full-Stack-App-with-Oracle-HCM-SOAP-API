@@ -1,0 +1,31 @@
+// backend/test/soap.test.js
+const chai = require('chai');
+const chaiAsPromised = require('chai-as-promised');
+const oracleService = require('../src/services/soapService');
+
+chai.use(chaiAsPromised);
+const expect = chai.expect;
+
+describe('Oracle HCM SOAP Integration', () => {
+    it('should initialize SOAP client', async () => {
+        const client = await oracleService.initializeClient();
+        expect(client).to.exist;
+        expect(client).to.have.property('findEmployeesAsync');
+    });
+
+    it('should fetch employees', async () => {
+        const employees = await oracleService.getEmployees();
+        expect(employees).to.be.an('array');
+    });
+
+    it('should handle SOAP errors gracefully', async () => {
+        // Test with invalid credentials
+        const originalPassword = process.env.ORACLE_PASSWORD;
+        process.env.ORACLE_PASSWORD = 'wrong';
+        
+        await expect(oracleService.getEmployees())
+            .to.eventually.be.rejectedWith('SOAP request failed');
+        
+        process.env.ORACLE_PASSWORD = originalPassword;
+    });
+});
