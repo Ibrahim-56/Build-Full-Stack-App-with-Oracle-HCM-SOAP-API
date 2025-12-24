@@ -1,0 +1,3 @@
+# Create .env files
+cp .env.example .env
+# Fill in your Oracle HCM credentials
