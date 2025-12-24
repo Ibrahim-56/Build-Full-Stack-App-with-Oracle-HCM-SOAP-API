@@ -1,0 +1,6 @@
+ORACLE_HCM_URL=https://your-instance.oraclecloud.com:443
+ORACLE_USERNAME=your_username
+ORACLE_PASSWORD=your_password
+SOAP_WSDL_URL=https://your-instance.oraclecloud.com/hcmServices/HcmService?wsdl
+PORT=5000
+JWT_SECRET=your_jwt_secret
